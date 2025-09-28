@@ -55,10 +55,13 @@ script = ExtResource("1_v0iea")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_cvnsp")
 
+<<<<<<< Updated upstream
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 scale = Vector2(10, 10)
 mesh = SubResource("CapsuleMesh_6t5aa")
 
+=======
+>>>>>>> Stashed changes
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v0iea")
 
