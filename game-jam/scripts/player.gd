@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
 const SPEED = 300.0
-
+var sacrifice = 0
 # Attack control
 var can_attack: bool = true
 var attack_type: String = "slash"  # can be "slash" or "beam"
+
 
 func _ready() -> void:
 	# Make sure only the default attack is visible at start
@@ -34,9 +35,9 @@ func _input(event):
 
 	# Attack input
 	if event.is_action_pressed("attack") and can_attack:
-		if attack_type == "slash":
+		if attack_type == "slash" and sacrifice <= 1:
 			Slash()
-		elif attack_type == "beam":
+		elif attack_type == "beam" and sacrifice <= 0:
 			Beam()
 
 # --- HELPER FUNCTIONS ---
