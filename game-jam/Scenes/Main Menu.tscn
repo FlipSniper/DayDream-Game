@@ -1,0 +1,89 @@
+[gd_scene load_steps=4 format=3 uid="uid://b08y3reepodqs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yr4w"]
+bg_color = Color(0.5240559, 0.6619085, 0.08359716, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(18.892157, 0, 0, 0.6)
+shadow_offset = Vector2(34, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5b7ti"]
+bg_color = Color(0.7254902, 0.5568628, 0.50980395, 0.7529412)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(18.892157, 0, 0, 0.6)
+shadow_offset = Vector2(34, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvdtt"]
+bg_color = Color(0.7490196, 0.57254905, 0.09411765, 0.8117647)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(18.892157, 0, 0, 0.6)
+shadow_offset = Vector2(34, 0)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.875
+offset_top = -60.125
+offset_right = 167.875
+offset_bottom = 32.125
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.8123221, 0.91399044, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_7yr4w")
+text = "Start Game"
+
+[node name="Button3" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.0
+offset_top = 171.0
+offset_right = 135.0
+offset_bottom = 236.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.8117647, 0.9137255, 0.88235295)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_5b7ti")
+text = "Exit"
+
+[node name="Button2" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.0
+offset_top = 63.0
+offset_right = 158.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.8117647, 0.9137255, 0.8117647)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_dvdtt")
+text = "Options"
