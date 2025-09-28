@@ -5,7 +5,6 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
 
-# --- Atlas Textures for animations ---
 [sub_resource type="AtlasTexture" id="AtlasTexture_0gysh"]
 atlas = ExtResource("2_cvnsp")
 region = Rect2(0, 64, 32, 32)
@@ -21,68 +20,9 @@ region = Rect2(64, 352, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
 atlas = ExtResource("2_cvnsp")
 region = Rect2(0, 0, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_fkybt"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(0, 288, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_x3wgy"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(32, 288, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(64, 288, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_wpjfl"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(0, 32, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_bi64h"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(0, 320, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ijsl"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(32, 320, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_p1odr"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(64, 320, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_ypfnu"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(0, 256, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_xuaoq"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(32, 256, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(0, 192, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(32, 192, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_7dp3o"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(0, 224, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_h4iuc"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(32, 224, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_wohnl"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(0, 64, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_36dho"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(32, 64, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(0, 0, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(32, 0, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_fd4e3"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(0, 32, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_qqcod"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(32, 32, 32, 32)
 
-# --- SpriteFrames ---
 [sub_resource type="SpriteFrames" id="SpriteFrames_v0iea"]
-# Use the AtlasTextures above to define animations in the editor
-# (keep your existing animation definitions for idle, run, attack, etc.)
+# Assign AtlasTextures for your animations in the Godot editor
 
 [sub_resource type="BoxMesh" id="BoxMesh_v0iea"]
 
@@ -112,7 +52,6 @@ _data = {
 &"slash": SubResource("Animation_cvnsp")
 }
 
-# --- Nodes ---
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_v0iea")
 
@@ -147,7 +86,5 @@ shape = SubResource("RectangleShape2D_v0iea")
 root_node = NodePath("../Slash")
 libraries = {&"": SubResource("AnimationLibrary_vgqql")}
 
-# --- Connections ---
 [connection signal="area_entered" from="Slash/sword/Area2D" to="." method="_on_SwordHitbox_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-
