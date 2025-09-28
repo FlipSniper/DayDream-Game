@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctm2spltdyydk"]
+[gd_scene load_steps=11 format=3 uid="uid://ctm2spltdyydk"]
 
 [ext_resource type="Script" uid="uid://jesxfp6jwwli" path="res://scripts/player.gd" id="1"]
 
@@ -12,6 +12,8 @@ height = 64.0
 size = Vector2(17, 48)
 
 [sub_resource type="BoxMesh" id="4"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_cvnsp"]
 
 [sub_resource type="Animation" id="7"]
 length = 0.001
@@ -27,9 +29,82 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Beam:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Beam:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Beam:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="5"]
 resource_name = "beam"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Beam:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Beam:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(48.339134, 9.25)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Beam:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="6"]
 resource_name = "slash"
@@ -80,18 +155,18 @@ scale = Vector2(14.73034, 43.441055)
 mesh = SubResource("4")
 
 [node name="Beam" type="Node2D" parent="."]
-visible = false
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Beam"]
-position = Vector2(24, 2)
+position = Vector2(22, -2.3841858e-07)
+scale = Vector2(16.324215, 6.396864)
+mesh = SubResource("CapsuleMesh_cvnsp")
 
-[node name="sword" type="MeshInstance2D" parent="Beam"]
-position = Vector2(1, -18)
-
-[node name="Area2D" type="Area2D" parent="Beam/sword"]
+[node name="Area2D" type="Area2D" parent="Beam"]
+position = Vector2(22, 0)
+scale = Vector2(1.0092671, 0.26625592)
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Beam/sword/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Beam/Area2D"]
 shape = SubResource("3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
