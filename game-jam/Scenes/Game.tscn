@@ -10,7 +10,7 @@ size = Vector2(1.0119206, 1.0139537)
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_iukft")]
-position = Vector2(309, 0)
+position = Vector2(319, 249)
 
 [node name="Platform" type="Node2D" parent="."]
 position = Vector2(148, 518)
