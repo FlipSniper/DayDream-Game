@@ -6,6 +6,10 @@ const SPEED = 300.0
 var can_attack: bool = true
 var attack_type: String = "slash"  # can be "slash" or "beam"
 
+func _ready() -> void:
+	$Beam.visible = false
+	$Slash.visible = true
+
 func _physics_process(delta: float) -> void:
 	# Movement
 	var input_vector = Vector2.ZERO
@@ -19,9 +23,9 @@ func _physics_process(delta: float) -> void:
 func _input(event):
 	# Switch attack type
 	if event.is_action_pressed("Basic"):
-		attack_type = "slash"
+		_set_attack_type("slash")
 	elif event.is_action_pressed("Ability1"):
-		attack_type = "beam"
+		_set_attack_type("beam")
 
 	# Attack input
 	if event.is_action_pressed("attack") and can_attack:
@@ -30,27 +34,40 @@ func _input(event):
 		elif attack_type == "beam":
 			Beam()
 
+# --- HELPER FUNCTIONS ---
+
+func _set_attack_type(new_type: String) -> void:
+	attack_type = new_type
+	# Show only the equipped attack
+	$Slash.visible = attack_type == "slash"
+	$Beam.visible = attack_type == "beam"
+
 # --- ATTACKS ---
 
 func Slash() -> void:
 	can_attack = false
 	$AnimationPlayer.play("slash")
 	$Slash/Area2D.monitoring = true
+	$Beam/Area2D.monitoring = false
 
 func Beam() -> void:
 	can_attack = false
-	# TODO: Replace "slash" with a real "beam" animation when you make one
 	$AnimationPlayer.play("beam")
-	# TODO: Instead of sword hitbox, spawn a projectile or enable beam Area2D
-	print("Beam attack triggered (not implemented yet).")
+	$Beam/Area2D.monitoring = true
+	$Slash/Area2D.monitoring = false
 
 # --- SIGNALS ---
 
 func _on_SwordHitbox_body_entered(body: Node) -> void:
 	if body.is_in_group("enemies") and body.has_method("take_damage"):
-		body.take_damage(1)
+		# Determine which attack is active for damage
+		if attack_type == "slash":
+			body.take_damage(1)  # Slash damage
+		elif attack_type == "beam":
+			body.take_damage(2)  # Beam damage (example)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "slash" or anim_name == "beam":
 		$Slash/Area2D.monitoring = false
+		$Beam/Area2D.monitoring = false
 		can_attack = true
