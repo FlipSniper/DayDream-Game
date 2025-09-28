@@ -7,6 +7,12 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6t5aa"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v0iea"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"walkF",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0iea"]
 size = Vector2(17, 48)
@@ -23,6 +29,7 @@ mesh = SubResource("CapsuleMesh_6t5aa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v0iea")
+animation = &"walkF"
 
 [node name="Slash" type="Node2D" parent="."]
 
