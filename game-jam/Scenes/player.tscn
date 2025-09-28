@@ -2,26 +2,24 @@
 
 [ext_resource type="Script" uid="uid://player_script" path="res://scripts/player.gd" id=1]
 
-[sub_resource type="CapsuleShape2D" id=CapsuleShape2D_1]
+[sub_resource type="CapsuleShape2D" id=1]
 height = 64
 radius = 16
 
-[sub_resource type="RectangleShape2D" id=RectangleShape2D_1]
+[sub_resource type="RectangleShape2D" id=2]
 size = Vector2(17, 48)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource(1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource(CapsuleShape2D_1)
+shape = SubResource(1)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-# placeholder rectangle mesh
 mesh = null
 scale = Vector2(1, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-# No sprite frames assigned yet
 animation = "idle"
 autoplay = "idle"
 
@@ -38,8 +36,7 @@ position = Vector2(0, 0)
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Slash/sword/Area2D"]
-shape = SubResource(RectangleShape2D_1)
+shape = SubResource(2)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-# placeholder animation
 autoplay = ""
