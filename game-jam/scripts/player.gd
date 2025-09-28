@@ -35,7 +35,7 @@ func _input(event):
 func Slash() -> void:
 	can_attack = false
 	$AnimationPlayer.play("slash")
-	$Slash/sword/Area2D.monitoring = true
+	$Slash/Area2D.monitoring = true
 
 func Beam() -> void:
 	can_attack = false
@@ -52,5 +52,5 @@ func _on_SwordHitbox_body_entered(body: Node) -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "slash" or anim_name == "beam":
-		$Slash/sword/Area2D.monitoring = false
+		$Slash/Area2D.monitoring = false
 		can_attack = true

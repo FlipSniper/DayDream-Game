@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctm2spltdyydk"]
+[gd_scene load_steps=11 format=3 uid="uid://ctm2spltdyydk"]
 
 [ext_resource type="Script" uid="uid://jesxfp6jwwli" path="res://scripts/player.gd" id="1"]
 
@@ -53,6 +53,8 @@ _data = {
 &"slash": SubResource("Animation_vgqql")
 }
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_cvnsp"]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1")
 
@@ -72,13 +74,11 @@ autoplay = "idle"
 position = Vector2(15, 21)
 rotation = 0.87266463
 
-[node name="sword" type="MeshInstance2D" parent="Slash"]
+[node name="Area2D" type="Area2D" parent="Slash"]
 position = Vector2(1, -18)
-
-[node name="Area2D" type="Area2D" parent="Slash/sword"]
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Slash/sword/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slash/Area2D"]
 shape = SubResource("2")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Slash"]
@@ -91,5 +91,22 @@ libraries = {
 &"": SubResource("AnimationLibrary_x3wgy")
 }
 
-[connection signal="area_entered" from="Slash/sword/Area2D" to="." method="_on_SwordHitbox_body_entered"]
+[node name="Beam" type="Node2D" parent="."]
+visible = false
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Beam"]
+position = Vector2(24, 2)
+scale = Vector2(24.75, 14.25)
+mesh = SubResource("CapsuleMesh_cvnsp")
+
+[node name="sword" type="MeshInstance2D" parent="Beam"]
+position = Vector2(1, -18)
+
+[node name="Area2D" type="Area2D" parent="Beam/sword"]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Beam/sword/Area2D"]
+shape = SubResource("2")
+
+[connection signal="area_entered" from="Slash/Area2D" to="." method="_on_SwordHitbox_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
