@@ -1,0 +1,124 @@
+[gd_scene load_steps=6 format=3 uid="uid://b08y3reepodqs"]
+
+[ext_resource type="Script" uid="uid://okw4r8ljibhn" path="res://Scenes/main_menu.gd" id="1_totuj"]
+[ext_resource type="Script" uid="uid://csc7fm2f24i4i" path="res://Scenes/OptionsWindow.gd" id="2_hcxxy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yr4w"]
+bg_color = Color(0.5240559, 0.6619085, 0.08359716, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(18.892157, 0, 0, 0.6)
+shadow_offset = Vector2(34, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvdtt"]
+bg_color = Color(0.7490196, 0.57254905, 0.09411765, 0.8117647)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(18.892157, 0, 0, 0.6)
+shadow_offset = Vector2(34, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5b7ti"]
+bg_color = Color(0.7254902, 0.5568628, 0.50980395, 0.7529412)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(18.892157, 0, 0, 0.6)
+shadow_offset = Vector2(34, 0)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_totuj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.125
+offset_top = -57.0
+offset_right = 121.125
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8123221, 0.91399044, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_7yr4w")
+text = "Start Game"
+
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8117647, 0.9137255, 0.8117647)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_dvdtt")
+text = "Options"
+
+[node name="Button3" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8117647, 0.9137255, 0.88235295)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_5b7ti")
+text = "Exit"
+
+[node name="OptionsWindow" type="Window" parent="CanvasLayer/VBoxContainer"]
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+visible = false
+script = ExtResource("2_hcxxy")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer/OptionsWindow"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/OptionsWindow/MarginContainer"]
+layout_mode = 2
+
+[node name="Close" type="Button" parent="CanvasLayer/VBoxContainer/OptionsWindow/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Close"
+
+[node name="Grid" type="GridContainer" parent="CanvasLayer/VBoxContainer/OptionsWindow/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/OptionsWindow/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Controls
+"
+
+[node name="Dk what this does?" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -115.5
+offset_top = 49.0
+offset_right = 115.5
+offset_bottom = 160.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "THE GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button2" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button3" to="." method="_on_exit_pressed"]
