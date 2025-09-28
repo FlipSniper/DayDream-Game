@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://player_clean"]
+[gd_scene load_steps=10 format=3 uid="uid://player_clean"]
 
 [ext_resource type="Script" uid="uid://player_script" path="res://scripts/player.gd" id=1]
 
@@ -60,13 +60,9 @@ script = ExtResource(1)
 shape = SubResource(1)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-position = Vector2(1, -1)
-scale = Vector2(1, 1)
+position = Vector2(0,0)
+scale = Vector2(1,1)
 mesh = SubResource(2)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-animation = ""
-autoplay = "idle"
 
 [node name="Slash" type="Node2D" parent="."]
 position = Vector2(15, 21)
