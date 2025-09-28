@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
 
-# --- Atlas Textures from main (all needed for animations) ---
+# --- Atlas Textures for animations ---
 [sub_resource type="AtlasTexture" id="AtlasTexture_0gysh"]
 atlas = ExtResource("2_cvnsp")
 region = Rect2(0, 64, 32, 32)
@@ -78,53 +78,17 @@ region = Rect2(0, 32, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qqcod"]
 atlas = ExtResource("2_cvnsp")
 region = Rect2(32, 32, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_yh6i2"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(0, 160, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_nv4vc"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(32, 160, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_8gxox"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(64, 160, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_11gg7"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(96, 160, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_tx1dd"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(0, 96, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(32, 96, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_pu2lt"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(64, 96, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_ukyrk"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(96, 96, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_igrcy"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(0, 128, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_fs7ks"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(32, 128, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_l6n3p"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(64, 128, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_olqyp"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(96, 128, 32, 32)
 
-# --- Animations using those textures ---
+# --- SpriteFrames ---
 [sub_resource type="SpriteFrames" id="SpriteFrames_v0iea"]
-# (unchanged animation definitions from your pasted version, using the AtlasTextures above)
+# Use the AtlasTextures above to define animations in the editor
+# (keep your existing animation definitions for idle, run, attack, etc.)
 
 [sub_resource type="BoxMesh" id="BoxMesh_v0iea"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0iea"]
 size = Vector2(17, 48)
 
-# --- Animations ---
 [sub_resource type="Animation" id="Animation_6t5aa"]
 length = 0.001
 tracks/0/type = "value"
@@ -152,42 +116,38 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_v0iea")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."] 
 shape = SubResource("CapsuleShape2D_cvnsp")
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."] 
 scale = Vector2(10, 10)
 
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."] 
 sprite_frames = SubResource("SpriteFrames_v0iea")
-animation = &"hurtS"
+animation = "idleF"
 autoplay = "idleF"
 
-[node name="Slash" type="Node2D" parent="."]
+[node name="Slash" type="Node2D" parent="."] 
 position = Vector2(15, 21)
 
-[node name="sword" type="MeshInstance2D" parent="Slash"]
+[node name="sword" type="MeshInstance2D" parent="Slash"] 
 position = Vector2(1, -18)
 scale = Vector2(12.5, 38.5)
 mesh = SubResource("BoxMesh_v0iea")
 
-[node name="Area2D" type="Area2D" parent="Slash/sword"]
+[node name="Area2D" type="Area2D" parent="Slash/sword"] 
 position = Vector2(-1.28, -0.0779221)
 scale = Vector2(0.08, 0.025974024)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Slash/sword/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slash/sword/Area2D"] 
 position = Vector2(15.5, 2)
 shape = SubResource("RectangleShape2D_v0iea")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."] 
 root_node = NodePath("../Slash")
 libraries = {&"": SubResource("AnimationLibrary_vgqql")}
 
+# --- Connections ---
 [connection signal="area_entered" from="Slash/sword/Area2D" to="." method="_on_SwordHitbox_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+
