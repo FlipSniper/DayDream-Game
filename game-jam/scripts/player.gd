@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 300.0
-var sacrifice = 0
+@onready var sacrifice = 0
 # Attack control
 var can_attack: bool = true
 var attack_type: String = "slash"  # can be "slash" or "beam"
@@ -61,11 +61,12 @@ func Beam() -> void:
 
 # --- SIGNALS ---
 func _on_SwordHitbox_body_entered(body: Node) -> void:
-	if body.is_in_group("enemies") and body.has_method("take_damage"):
+	print(body.get_parent().has_method("take_damage"))
+	if body.has_method("take_damage"):
 		if attack_type == "slash":
-			body.take_damage(1)
+			body.get_parent().take_damage(1)
 		elif attack_type == "beam":
-			body.take_damage(2)
+			body.get_parent().take_damage(2)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name in ["slash", "beam"]:

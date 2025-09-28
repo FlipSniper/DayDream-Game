@@ -20,3 +20,5 @@ mesh = SubResource("CapsuleMesh_eeuky")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2(1, 0.6212121)
 shape = SubResource("CapsuleShape2D_eeuky")
+
+[connection signal="area_entered" from="Area2D" to="." method="on_body_entered"]
