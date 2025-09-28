@@ -1,16 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://deydhoh60efv0"]
+[gd_scene load_steps=7 format=3 uid="uid://deydhoh60efv0"]
 
 [ext_resource type="PackedScene" uid="uid://ctm2spltdyydk" path="res://Scenes/player.tscn" id="1_iukft"]
+[ext_resource type="Texture2D" uid="uid://db75y4anpsqde" path="res://Assets/Player/Prototype_Character/prototype_character.png" id="2_gl6un"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5yw3"]
+atlas = ExtResource("2_gl6un")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kldst"]
+atlas = ExtResource("2_gl6un")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b2bpf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5yw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kldst")
+}],
+"loop": true,
+"name": &"frontIdle",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iukft"]
 size = Vector2(1.3715229, 2.0953493)
 
-[sub_resource type="BoxMesh" id="BoxMesh_gl6un"]
-
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_iukft")]
-position = Vector2(309, 0)
+position = Vector2(3.9999542, 4.9999695)
+scale = Vector2(4.853383, 4.853383)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_b2bpf")
+animation = &"frontIdle"
+frame_progress = 0.6512958
 
 [node name="Platform" type="Node2D" parent="."]
 position = Vector2(148, 518)
@@ -22,8 +49,3 @@ scale = Vector2(377.5, 107.5)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/StaticBody2D"]
 position = Vector2(-0.027152061, 0.39767456)
 shape = SubResource("RectangleShape2D_iukft")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Platform"]
-position = Vector2(188.25, 53.25)
-scale = Vector2(377.5, 107.5)
-mesh = SubResource("BoxMesh_gl6un")
