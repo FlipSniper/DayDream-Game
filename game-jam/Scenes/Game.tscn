@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://deydhoh60efv0"]
+[gd_scene load_steps=6 format=3 uid="uid://deydhoh60efv0"]
 
 [ext_resource type="PackedScene" uid="uid://ctm2spltdyydk" path="res://Scenes/player.tscn" id="1_iukft"]
 [ext_resource type="PackedScene" uid="uid://mfe2di7rppq4" path="res://Scenes/player_ui.tscn" id="2_gl6un"]
+[ext_resource type="PackedScene" uid="uid://cbqpaskb64wxa" path="res://Scenes/enemies.tscn" id="3_j5yw3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iukft"]
 size = Vector2(1.0119206, 1.0139537)
@@ -29,3 +30,7 @@ mesh = SubResource("BoxMesh_gl6un")
 [node name="Player" parent="." instance=ExtResource("1_iukft")]
 
 [node name="player_ui" parent="." instance=ExtResource("2_gl6un")]
+
+[node name="enemies" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_j5yw3")]
+position = Vector2(425, 265)
+player = NodePath("../Player")
