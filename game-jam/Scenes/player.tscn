@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctm2spltdyydk"]
+[gd_scene load_steps=9 format=3 uid="uid://ctm2spltdyydk"]
 
 [ext_resource type="Script" uid="uid://jesxfp6jwwli" path="res://scripts/player.gd" id="1_v0iea"]
 
@@ -6,10 +6,48 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6t5aa"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_v0iea"]
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_v0iea"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0iea"]
 size = Vector2(17, 48)
+
+[sub_resource type="Animation" id="Animation_cvnsp"]
+resource_name = "slash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0471976, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_6t5aa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vgqql"]
+_data = {
+&"RESET": SubResource("Animation_6t5aa"),
+&"slash": SubResource("Animation_cvnsp")
+}
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_v0iea")
@@ -25,9 +63,26 @@ mesh = SubResource("CapsuleMesh_6t5aa")
 sprite_frames = SubResource("SpriteFrames_v0iea")
 
 [node name="Slash" type="Node2D" parent="."]
+position = Vector2(15, 21)
 
-[node name="Area2D" type="Area2D" parent="Slash"]
+[node name="sword" type="MeshInstance2D" parent="Slash"]
+position = Vector2(1, -18)
+scale = Vector2(12.5, 38.5)
+mesh = SubResource("BoxMesh_v0iea")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Slash/Area2D"]
+[node name="Area2D" type="Area2D" parent="Slash/sword"]
+position = Vector2(-1.28, -0.0779221)
+scale = Vector2(0.08, 0.025974024)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slash/sword/Area2D"]
 position = Vector2(15.5, 2)
 shape = SubResource("RectangleShape2D_v0iea")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Slash")
+libraries = {
+&"": SubResource("AnimationLibrary_vgqql")
+}
+
+[connection signal="area_entered" from="Slash/sword/Area2D" to="." method="_on_SwordHitbox_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
