@@ -1,38 +1,38 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctm2spltdyydk"]
+[gd_scene load_steps=13 format=3 uid="uid://ctm2spltdyydk"]
 
 [ext_resource type="Script" uid="uid://jesxfp6jwwli" path="res://scripts/player.gd" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://d003jxs4yai17" path="res://assets/Snoblin_Prototype_Character/Player/Prototype_Character/prototype_character.png" id="2_cvnsp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6t5aa"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_v0iea"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
+atlas = ExtResource("2_cvnsp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
+atlas = ExtResource("2_cvnsp")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v0iea"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t5aa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgqql")
+}],
 "loop": true,
-"name": &"walkF",
+"name": &"idleF",
 "speed": 5.0
 }]
 
+[sub_resource type="BoxMesh" id="BoxMesh_v0iea"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0iea"]
 size = Vector2(17, 48)
-
-[sub_resource type="Animation" id="Animation_cvnsp"]
-resource_name = "slash"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0471976, 0.0]
-}
 
 [sub_resource type="Animation" id="Animation_6t5aa"]
 length = 0.001
@@ -47,6 +47,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_cvnsp"]
+resource_name = "slash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0471976, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vgqql"]
@@ -67,7 +82,8 @@ mesh = SubResource("CapsuleMesh_6t5aa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v0iea")
-animation = &"walkF"
+animation = &"idleF"
+frame_progress = 0.60730875
 
 [node name="Slash" type="Node2D" parent="."]
 position = Vector2(15, 21)
