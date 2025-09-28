@@ -1,3 +1,29 @@
-[gd_scene format=3 uid="uid://deydhoh60efv0"]
+[gd_scene load_steps=4 format=3 uid="uid://deydhoh60efv0"]
+
+[ext_resource type="PackedScene" uid="uid://ctm2spltdyydk" path="res://Scenes/player.tscn" id="1_iukft"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iukft"]
+size = Vector2(1.3715229, 2.0953493)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gl6un"]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_iukft")]
+position = Vector2(309, 0)
+
+[node name="Platform" type="Node2D" parent="."]
+position = Vector2(148, 518)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Platform"]
+position = Vector2(188.25, 53.25)
+scale = Vector2(377.5, 107.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/StaticBody2D"]
+position = Vector2(-0.027152061, 0.39767456)
+shape = SubResource("RectangleShape2D_iukft")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Platform"]
+position = Vector2(188.25, 53.25)
+scale = Vector2(377.5, 107.5)
+mesh = SubResource("BoxMesh_gl6un")
