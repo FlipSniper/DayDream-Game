@@ -22,10 +22,7 @@ func take_damage(amount: int) -> void:
 	
 	# Check for sacrifice logic
 	if current_health <= 0:
-		if player.has_variable("sacrifice"):
-			player.sacrifice += 1
-		else:
-			player.sacrifice = 1  # initialize if it doesn’t exist
+		player.sacrifice += 1   # ✅ directly increment
 		current_health = max_health  # reset health after sacrifice
 		_update_health_label()
 		

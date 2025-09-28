@@ -29,8 +29,20 @@ mesh = SubResource("BoxMesh_gl6un")
 
 [node name="Player" parent="." instance=ExtResource("1_iukft")]
 
-[node name="player_ui" parent="." instance=ExtResource("2_gl6un")]
+[node name="player_ui" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_gl6un")]
+player = NodePath("../Player")
 
-[node name="enemies" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_j5yw3")]
+[node name="enemies" parent="." node_paths=PackedStringArray("health_ui", "player") instance=ExtResource("3_j5yw3")]
 position = Vector2(425, 265)
+health_ui = NodePath("../player_ui")
+player = NodePath("../Player")
+
+[node name="enemies2" parent="." node_paths=PackedStringArray("health_ui", "player") instance=ExtResource("3_j5yw3")]
+position = Vector2(288, 265)
+health_ui = NodePath("../player_ui")
+player = NodePath("../Player")
+
+[node name="enemies3" parent="." node_paths=PackedStringArray("health_ui", "player") instance=ExtResource("3_j5yw3")]
+position = Vector2(425, 412)
+health_ui = NodePath("../player_ui")
 player = NodePath("../Player")
